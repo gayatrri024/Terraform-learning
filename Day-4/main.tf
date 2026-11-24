@@ -1,24 +1,19 @@
-provider "aws" {
-  region = "us-east-1"
-}
+   provider "aws" {
+    region = "ap-south-1"
+  }
 
-resource "aws_instance" "gayatri" {
-  instance_type = "t2.micro"
-  ami = "ami-053b0d53c279acc90" # change this
-  subnet_id = "subnet-019ea91ed9b5252e7" # change this
-}
+  resource "aws_instance" "gayatri" {
+    instance_type = "t3.micro"
+    ami           = "ami-0593d733c2fc5bd2e"
 
-resource "aws_s3_bucket" "s3_bucket" {
-  bucket = "gayatri-abhishek-s3-demo-xyz" # change this
-}
 
-resource "aws_dynamodb_table" "terraform_lock" {
-  name           = "terraform-lock"
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "LockID"
+  }
+resource "s3_bucket" "gayatri_bucket" {
+  bucket = "gayatri-bucket-123456"
+  acl    = "private"
 
-  attribute {
-    name = "LockID"
-    type = "S"
+  tags = {
+    Name        = "Gayatri Bucket"
+    Environment = "Dev"
   }
 }
